@@ -26,9 +26,27 @@ jobs:
       env:
         - CONFIG_OPTS="--enable-debug --disable-flto"
     - os: linux
+      name: GCC on Linux, Amd64
+      compiler: gcc
+      arch: arm64-graviton2
+      virt: vm
+      dist: focal
+      group: edge
+      env:
+        - CONFIG_OPTS="--enable-debug --disable-flto"
+    - os: linux
       name: Clang on Linux, Amd64
       compiler: clang
       arch: amd64
+      env:
+        - CONFIG_OPTS="--enable-debug --disable-flto"
+    - os: linux
+      name: Clang on Linux, Amd64
+      compiler: clang
+      arch: arm64-graviton2
+      virt: vm
+      dist: focal
+      group: edge
       env:
         - CONFIG_OPTS="--enable-debug --disable-flto"
     - os: osx
