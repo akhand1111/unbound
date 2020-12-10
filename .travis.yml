@@ -26,7 +26,7 @@ jobs:
       env:
         - CONFIG_OPTS="--enable-debug --disable-flto"
     - os: linux
-      name: GCC on Linux, Amd64
+      name: GCC on Linux, aarch64
       compiler: gcc
       arch: arm64-graviton2
       virt: vm
@@ -41,7 +41,7 @@ jobs:
       env:
         - CONFIG_OPTS="--enable-debug --disable-flto"
     - os: linux
-      name: Clang on Linux, Amd64
+      name: Clang on Linux, aarch64
       compiler: clang
       arch: arm64-graviton2
       virt: vm
@@ -64,9 +64,29 @@ jobs:
         - TEST_LIBEVENT=yes
         - CONFIG_OPTS="--with-libevent"
     - os: linux
+      name: Libevent, GCC on Linux, aarch64
+      compiler: gcc
+      arch: arm64-graviton2
+      virt: vm
+      dist: focal
+      group: edge
+      env:
+        - TEST_LIBEVENT=yes
+        - CONFIG_OPTS="--with-libevent"
+    - os: linux
       name: Libevent, Clang on Linux, Amd64
       compiler: clang
       arch: amd64
+      env:
+        - TEST_LIBEVENT=yes
+        - CONFIG_OPTS="--with-libevent"
+    - os: linux
+      name: Libevent, Clang on Linux, aarch64
+      compiler: clang
+      arch: arm64-graviton2
+      virt: vm
+      dist: focal
+      group: edge
       env:
         - TEST_LIBEVENT=yes
         - CONFIG_OPTS="--with-libevent"
@@ -82,6 +102,16 @@ jobs:
       name: UBsan, GCC on Linux, Amd64
       compiler: gcc
       arch: amd64
+      dist: bionic
+      env:
+        - TEST_UBSAN=yes
+    - os: linux
+      name: UBsan, GCC on Linux, aarch64
+      compiler: gcc
+      arch: arm64-graviton2
+      virt: vm
+      dist: focal
+      group: edge
       dist: bionic
       env:
         - TEST_UBSAN=yes
