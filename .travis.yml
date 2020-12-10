@@ -29,8 +29,8 @@ jobs:
       name: GCC on Linux, aarch64
       compiler: gcc
       arch: arm64-graviton2
-      virt: vm
-      dist: focal
+      virt: lxd
+      dist: xenial
       group: edge
       env:
         - CONFIG_OPTS="--enable-debug --disable-flto"
@@ -44,8 +44,8 @@ jobs:
       name: Clang on Linux, aarch64
       compiler: clang
       arch: arm64-graviton2
-      virt: vm
-      dist: focal
+      virt: lxd
+      dist: xenial
       group: edge
       env:
         - CONFIG_OPTS="--enable-debug --disable-flto"
@@ -67,8 +67,8 @@ jobs:
       name: Libevent, GCC on Linux, aarch64
       compiler: gcc
       arch: arm64-graviton2
-      virt: vm
-      dist: focal
+      virt: lxd
+      dist: xenial
       group: edge
       env:
         - TEST_LIBEVENT=yes
@@ -84,8 +84,8 @@ jobs:
       name: Libevent, Clang on Linux, aarch64
       compiler: clang
       arch: arm64-graviton2
-      virt: vm
-      dist: focal
+      virt: lxd
+      dist: xenial
       group: edge
       env:
         - TEST_LIBEVENT=yes
@@ -109,8 +109,8 @@ jobs:
       name: UBsan, GCC on Linux, aarch64
       compiler: gcc
       arch: arm64-graviton2
-      virt: vm
-      dist: focal
+      virt: lxd
+      dist: xenial
       group: edge
       dist: bionic
       env:
