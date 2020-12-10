@@ -123,9 +123,27 @@ jobs:
       env:
         - TEST_UBSAN=yes
     - os: linux
+      name: UBsan, Clang on Linux, Amd64
+      compiler: clang
+      arch: arm64-graviton2
+      virt: lxd
+      group: edge
+      dist: bionic
+      env:
+        - TEST_UBSAN=yes
+    - os: linux
       name: Asan, GCC on Linux, Amd64
       compiler: gcc
       arch: amd64
+      dist: bionic
+      env:
+        - TEST_ASAN=yes
+    - os: linux
+      name: Asan, GCC on Linux, Arm64
+      compiler: gcc
+      arch: arm64-graviton2
+      virt: lxd
+      group: edge
       dist: bionic
       env:
         - TEST_ASAN=yes
@@ -277,9 +295,41 @@ jobs:
         - ANDROID_SDK_ROOT="$HOME/android-sdk"
         - ANDROID_NDK_ROOT="$HOME/android-ndk"
     - os: linux
+      name: Android armv7a, Linux, Amd64
+      compiler: clang
+      arch: arm64-graviton2
+      virt: lxd
+      group: edge
+      dist: bionic
+      env:
+        - TEST_ANDROID=yes
+        - AUTOTOOLS_HOST=armv7a-linux-androideabi
+        - OPENSSL_HOST=android-arm
+        - ANDROID_CPU=armv7a
+        - ANDROID_API=23
+        - ANDROID_PREFIX="$HOME/android$ANDROID_API-$ANDROID_CPU"
+        - ANDROID_SDK_ROOT="$HOME/android-sdk"
+        - ANDROID_NDK_ROOT="$HOME/android-ndk"
+    - os: linux
       name: Android aarch64, Linux, Amd64
       compiler: clang
       arch: amd64
+      dist: bionic
+      env:
+        - TEST_ANDROID=yes
+        - AUTOTOOLS_HOST=aarch64-linux-android
+        - OPENSSL_HOST=android-arm64
+        - ANDROID_CPU=aarch64
+        - ANDROID_API=23
+        - ANDROID_PREFIX="$HOME/android$ANDROID_API-$ANDROID_CPU"
+        - ANDROID_SDK_ROOT="$HOME/android-sdk"
+        - ANDROID_NDK_ROOT="$HOME/android-ndk"
+    - os: linux
+      name: Android aarch64, Linux, Arm64
+      compiler: clang
+      arch: arm64-graviton2
+      virt: lxd
+      group: edge
       dist: bionic
       env:
         - TEST_ANDROID=yes
@@ -305,9 +355,41 @@ jobs:
         - ANDROID_SDK_ROOT="$HOME/android-sdk"
         - ANDROID_NDK_ROOT="$HOME/android-ndk"
     - os: linux
+      name: Android aarch64, Linux, Arm64
+      compiler: clang
+      arch: arm64-graviton2
+      virt: lxd
+      group: edge
+      dist: bionic
+      env:
+        - TEST_ANDROID=yes
+        - AUTOTOOLS_HOST=i686-linux-android
+        - OPENSSL_HOST=android-x86
+        - ANDROID_CPU=x86
+        - ANDROID_API=23
+        - ANDROID_PREFIX="$HOME/android$ANDROID_API-$ANDROID_CPU"
+        - ANDROID_SDK_ROOT="$HOME/android-sdk"
+        - ANDROID_NDK_ROOT="$HOME/android-ndk"
+    - os: linux
       name: Android x86_64, Linux, Amd64
       compiler: clang
       arch: amd64
+      dist: bionic
+      env:
+        - TEST_ANDROID=yes
+        - AUTOTOOLS_HOST=x86_64-linux-android
+        - OPENSSL_HOST=android-x86_64
+        - ANDROID_CPU=x86_64
+        - ANDROID_API=23
+        - ANDROID_PREFIX="$HOME/android$ANDROID_API-$ANDROID_CPU"
+        - ANDROID_SDK_ROOT="$HOME/android-sdk"
+        - ANDROID_NDK_ROOT="$HOME/android-ndk"
+    - os: linux
+      name: Android aarch_64, Linux, Amd64
+      compiler: clang
+      arch: arm64-graviton2
+      virt: lxd
+      group: edge
       dist: bionic
       env:
         - TEST_ANDROID=yes
