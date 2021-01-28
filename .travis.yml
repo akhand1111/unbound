@@ -106,9 +106,10 @@ script:
       make -j 2
       make test
       (cd testdata/clang-analysis.tdir; bash clang-analysis.test)
-    else
-      ./configure ${CONFIG_OPTS}
-      make -j 2
-      make test
-      (cd testdata/clang-analysis.tdir; bash clang-analysis.test)
-    fi
+      else
+        ./configure ${CONFIG_OPTS}
+        make -j 2
+        make test
+        (cd testdata/clang-analysis.tdir; bash clang-analysis.test)
+      fi
+
