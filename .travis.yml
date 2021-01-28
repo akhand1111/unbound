@@ -60,10 +60,7 @@ before_script:
 # some code duplication to avoid failures in cross-compiles. Also see
 # https://docs.travis-ci.com/user/job-lifecycle/ in the Travis docs.
 script:
-  - |
-    if [ "$TEST_ASAN" = "yes" ]; then
-      export CFLAGS="-DNDEBUG -g2 -O3 -fsanitize=address"
-      ./configure
-      make -j 2
-      make test
-    fi
+  - export CFLAGS="-DNDEBUG -g2 -O3 -fsanitize=address"
+  - ./configure
+  - make -j 2
+  - make test
