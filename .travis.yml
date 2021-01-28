@@ -66,23 +66,4 @@ script:
       ./configure
       make -j 2
       make test
-    elif [ "$TEST_ANDROID" = "yes" ]; then
-      export AUTOTOOLS_BUILD="$(./config.guess)"
-      export PKG_CONFIG_PATH="$ANDROID_PREFIX/lib/pkgconfig"
-      ./contrib/android/install_ndk.sh
-      source ./contrib/android/setenv_android.sh
-      ./contrib/android/install_openssl.sh
-      ./contrib/android/install_expat.sh
-      ./configure \
-        --build="$AUTOTOOLS_BUILD" --host="$AUTOTOOLS_HOST" \
-        --prefix="$ANDROID_PREFIX" \
-        --with-ssl="$ANDROID_PREFIX" --disable-gost \
-        --with-libexpat="$ANDROID_PREFIX";
-      make -j 2
-      make install
-    else
-      ./configure ${CONFIG_OPTS}
-      make -j 2
-      make test
-      (cd testdata/clang-analysis.tdir; bash clang-analysis.test)
     fi
