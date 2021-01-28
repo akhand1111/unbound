@@ -60,45 +60,9 @@ before_script:
 # some code duplication to avoid failures in cross-compiles. Also see
 # https://docs.travis-ci.com/user/job-lifecycle/ in the Travis docs.
 script:
-  - if [ "$TEST_UBSAN" = "yes" ]; then
-      export CFLAGS="-DNDEBUG -g2 -O3 -fsanitize=undefined -fno-sanitize-recover"
-      ./configure
-      make -j 2
-      make test
-    fi
   - if [ "$TEST_ASAN" = "yes" ]; then
       export CFLAGS="-DNDEBUG -g2 -O3 -fsanitize=address"
       ./configure
       make -j 2
       make test
     fi
-  - if [ "$TEST_IOS" = "yes" ]; then
-      export AUTOTOOLS_BUILD="$(./config.guess)"
-      export PKG_CONFIG_PATH="$IOS_PREFIX/lib/pkgconfig"
-      source ./contrib/ios/setenv_ios.sh
-      ./contrib/ios/install_openssl.sh
-      ./contrib/ios/install_expat.sh
-      ./configure \
-        --build="$AUTOTOOLS_BUILD" --host="$AUTOTOOLS_HOST" \
-        --prefix="$IOS_PREFIX" \
-        --with-ssl="$IOS_PREFIX" --disable-gost \
-        --with-libexpat="$IOS_PREFIX";
-      make -j 2
-      make install
-    fi
-  - if [ "$TEST_ANDROID" = "yes" ]; then
-      export AUTOTOOLS_BUILD="$(./config.guess)"
-      export PKG_CONFIG_PATH="$ANDROID_PREFIX/lib/pkgconfig"
-      ./contrib/android/install_ndk.sh
-      source ./contrib/android/setenv_android.sh
-      ./contrib/android/install_openssl.sh
-      ./contrib/android/install_expat.sh
-      ./configure \
-        --build="$AUTOTOOLS_BUILD" --host="$AUTOTOOLS_HOST" \
-        --prefix="$ANDROID_PREFIX" \
-        --with-ssl="$ANDROID_PREFIX" --disable-gost \
-        --with-libexpat="$ANDROID_PREFIX";
-      make -j 2
-      make install
-    fi
-
